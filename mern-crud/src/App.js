@@ -8,15 +8,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      users: []
     };
   }
 
   componentDidMount() {
-    axios.get('/api/book')
+    axios.get('/api/user')
       .then(res => {
-        this.setState({ books: res.data });
-        console.log(this.state.books);
+        this.setState({ users: res.data});
+        console.log(this.state.users);
       });
   }
 
@@ -26,25 +26,29 @@ class App extends Component {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              BOOK CATALOG
+              USER DIRECTORY
             </h3>
           </div>
           <div class="panel-body">
-          <h4><Link to="/create" type="button" class="btn btn-primary pull-right">Add Book</Link></h4>
+         <h4><Link to="/create" type="button" class="btn btn-primary pull-right">Add users</Link></h4>
+           
             <table class="table table-stripe">
               <thead>
                 <tr>
-                  <th>ISBN</th>
-                  <th>Title</th>
-                  <th>Author</th>
+                  <th>USER NAME</th>
+                  <th>ADDRESS</th>
+                  <th>CONTACT</th>
+                  <th>EMAIL</th>
                 </tr>
               </thead>
               <tbody>
-                {this.state.books.map(book =>
+                {this.state.users.map(user =>
                   <tr>
-                    <td><Link to={`/show/${book._id}`}>{book.isbn}</Link></td>
-                    <td>{book.title}</td>
-                    <td>{book.author}</td>
+                    
+                    <td>{user.username}</td>
+                    <td>{user.address}</td>
+                    <td>{user.contact}</td>
+                    <td>{user.email}</td>
                     <td><Link to={`/edit/${user._id}`} type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></Link>&nbsp;
         <Link to={`/show/${user._id}`} type="button" class="btn btn-danger">

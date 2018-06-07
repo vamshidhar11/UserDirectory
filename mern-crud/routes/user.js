@@ -1,43 +1,43 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Book = require('../models/Book.js');
+var User = require('../models/User.js');
 
-/* GET home page. */
+/* GET ALL User */
 router.get('/', function(req, res, next) {
-  Book.find(function (err, products) {
+  User.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
   });
 });
 
-/* GET SINGLE BOOK BY ID */
+/* GET SINGLE  User  BY ID */
 router.get('/:id', function(req, res, next) {
-  Book.findById(req.params.id, function (err, post) {
+  User.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* SAVE BOOK */
+/* SAVE User */
 router.post('/', function(req, res, next) {
-  Book.create(req.body, function (err, post) {
+  User.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* UPDATE BOOK */
+/* UPDATE User */
 router.put('/:id', function(req, res, next) {
-  Book.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* DELETE BOOK */
+/* DELETE User */
 router.delete('/:id', function(req, res, next) {
-  Book.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
